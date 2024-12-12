@@ -1,0 +1,33 @@
+<div class="crossref card">
+    <div class="card-header">
+        <h5>Search Crossref</h5>
+    </div>
+    <div class="card-body overflow-y-scroll">
+        <input type="text" unicorn:model="src" />
+        <button unicorn:click="get_refs" class="btn btn-sm btn-primary">Search</button>
+        <p></p>
+        <!-- Show the search hits -->
+        {% if hits|length > 0 %}
+            <div>
+                <h6>Search hits (five top hits)</h6>
+                <ul>
+                    {% for hit in hits|slice:":5" %}
+                        <li><button unicorn:click="add_ref('{{ hit.doi }}')" class="btn btn-sm btn-info p-0">add</button>
+                            <a about="{{ hit.doi }}" href="https://doi.org/{{ hit.doi }}" target="_blank">{{ hit.title }}</a>" <em>{{ hit.authors }}</em></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {{ debug }}
+
+        <!-- Show my references -->
+        <h6>My References</h6>
+        <ul>
+            {% for ref in refs %}
+                <li><a href="https://doi.org/{{ ref.doi }}" target="_blank">{{ ref.title }}</a></li>
+            {% endfor %}
+        </ul>
+
+    </div>
+</div>
