@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.urls import path, include
 
+
 urlpatterns = [
     path("unicorn/", include("django_unicorn.urls")),
+    path('', include('testing.urls')),
 ]

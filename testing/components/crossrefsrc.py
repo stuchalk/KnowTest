@@ -34,8 +34,6 @@ class CrossrefsrcView(UnicornView):
                         authstr += au["family"]
                     elif 'given' in au.keys():
                         authstr += au["given"]
-                    else:
-                        authstr += 'unknown'
             else:
                 authstr = "No authors"
 
@@ -51,7 +49,10 @@ class CrossrefsrcView(UnicornView):
         for au in ref["author"]:
             if authstr != "":
                 authstr += ", "
-            authstr += au["family"]
+            if 'family' in au.keys():
+                authstr += au["family"]
+            elif 'given' in au.keys():
+                authstr += au["given"]
         Crossref.objects.create(title=ref['title'][0], authors=authstr, doi=ref["DOI"], updated=local.localize(datetime.now()))
         self.refs = Crossref.objects.all()
         self.src = ''
