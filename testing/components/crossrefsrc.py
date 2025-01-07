@@ -4,7 +4,6 @@ from pytz import timezone
 from datetime import datetime
 import requests
 
-
 local = timezone("America/New_York")
 
 
@@ -53,10 +52,15 @@ class CrossrefsrcView(UnicornView):
                 authstr += au["family"]
             elif 'given' in au.keys():
                 authstr += au["given"]
-        Crossref.objects.create(title=ref['title'][0], authors=authstr, doi=ref["DOI"], updated=local.localize(datetime.now()))
+        Crossref.objects.create(
+            title=ref['title'][0],
+            authors=authstr,
+            doi=ref["DOI"],
+            updated=local.localize(datetime.now()))
         self.refs = Crossref.objects.all()
         self.src = ''
 
     def drop_ref(self, refid):
         Crossref.objects.filter(id=refid).delete()
         self.refs = Crossref.objects.all()
+

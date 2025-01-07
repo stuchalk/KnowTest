@@ -3,7 +3,9 @@
         <h5>Search Crossref</h5>
     </div>
     <div class="card-body overflow-y-scroll">
-        <input type="text" unicorn:model="src" />
+        <label>
+            <input type="text" unicorn:model="src" />
+        </label>
         <button unicorn:click="get_refs" class="btn btn-sm btn-primary">Search</button>
         <p></p>
         <!-- Show the search hits -->
@@ -19,8 +21,6 @@
             </div>
         {% endif %}
 
-        {{ debug }}
-
         <!-- Show my references -->
         <h6>My References</h6>
         <ul>
@@ -28,6 +28,5 @@
                 <li><a href="https://doi.org/{{ ref.doi }}" target="_blank">{{ ref.title }}</a></li>
             {% endfor %}
         </ul>
-
     </div>
 </div>

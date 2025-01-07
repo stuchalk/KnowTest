@@ -1,0 +1,48 @@
+{
+  "type": "extsrc",
+  "name": "Search Crossref",
+  "comfig": {
+    "elements": [
+      {
+        "type":
+      }
+    ]
+  },
+  "ui": {
+    "elements": [
+      {
+        "type": "inputbox",
+        "name": "text",
+        "button": "Search",
+        "alt": "search text"
+      },
+      {
+        "type": "ulist",
+
+      }
+    ]
+  },
+  "functions": [
+    {
+
+    }
+  ],
+  "external": {
+    "name": "CrossRef API",
+    "link": "https://api.crossref.org/works",
+    "format": "get",
+    "required": [
+      {
+        "field": "query.title=",
+        "element": "text"
+      },
+      {
+        "field": "filter=from-pub-date:",
+        "element":
+      }
+    ],
+    "optional": [
+
+    ]
+  }
+}
